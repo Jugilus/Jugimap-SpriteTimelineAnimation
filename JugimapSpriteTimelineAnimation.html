@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>JugimapFrameworkDemo</title>
+    <style>
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+			line-height: 1.25em;
+			width: 1300px;
+			height: 800px;
+			margin: 0;
+			padding: 0;
+			padding-top: 0px;
+			background-color: #DDD;
+			background-repeat: no-repeat;
+			background-size: cover;
+			margin:0 auto;
+		}
+		
+        canvas.emscripten {
+			background: #000;
+			position: absolute;
+            top: 0px;
+            left: 0px;
+			margin-left: auto;
+			margin-right: auto;
+            border: 0;
+            width: 1300px;
+            height: 800px;
+            overflow: hidden;
+            display: block;
+            image-rendering: optimizeSpeed;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+		}
+		
+		h1 {
+		  font-size: 2.2em;
+		}
+
+		h2 {
+		  font-size: 1.5em;
+		  margin-top: 1.5em;
+		  margin-bottom: 0em;
+		}
+
+		h3 {
+		  font-size: 1.5em;
+		  margin-top: 1.5em;
+		}
+
+		h4 {
+			margin-bottom: 0.5em;
+			background-color: #dddddd;
+			font-size: 1.1em;
+			font-weight: bold;
+			margin-top: 1.2em;
+			left: 1em;
+		}
+		
+		h6 {
+			font-size: 0.8em;
+			font-weight: normal;
+			margin-top: 0.2em;
+			margin-bottom: 0em;
+		}
+		
+		hr{
+			border: 1px solid #BBBBBB;
+		}
+		
+		progress{
+			position: absolute;
+			
+			/*
+			top: 390px;
+            left: 404px;
+			width: 488px;
+			height: 28px;
+			*/
+			left: 485px;
+			top: 452px;
+			width: 330px;
+			height: 17px;
+			
+			border-radius: 0px;
+			border: 0px solid #ccc;
+		}
+		
+		/* For IE10 */ 
+        progress { 
+            background-color: white; 
+        } 
+  
+        progress { 
+            background-color: #D18128; 
+        } 
+		
+		
+		/* For Chrome or Safari */ 
+        progress::-webkit-progress-bar { 
+            background-color: white; 
+        } 
+  
+        progress::-webkit-progress-value { 
+            background-color: #D18128 !important; 
+        } 
+  
+  
+        /* For Firefox */ 
+        progress { 
+            background-color: white; 
+        } 
+  
+        progress::-moz-progress-bar { 
+            background-color: #D18128 !important; 
+        } 
+		
+		.centerContent{
+			position: absolute;
+			left: 50%;
+			width: 1300px; 
+			margin-left: -650px;
+		}
+		
+    </style>
+  </head>
+  
+  <body>
+  
+  <div style="position: relative;">
+  
+		<h3>Sprite Timeline Animation</h3>
+  
+		<div style="position: absolute; left: 50%; top:40px; width: 1300px;  margin-left: -650px;">
+			
+			<canvas id="canvas" class="emscripten" oncontextmenu="event.preventDefault();"></canvas>
+			
+			<img src="loader_darkB_1300x800.png" id="LoadingScreen" style="position: absolute; top: 0px; left: 0px;">
+			<!-- <h2 id="StatusText" style="position: absolute; top: 300px; left: 600px; color: #CCC " >Running...</h2>	-->
+			<progress value="0" max="1" id="Progress" hidden="">
+			
+		</div>
+		
+		<div style="position: absolute; left: 50%; top:840px; width: 1300px;  margin-left: -650px;">
+			<div style="position: relative;">
+				<h6 style="text-align: right">
+					Web version built with <a class="link" href="https://ncine.github.io">nCine</a> game engine. 
+				</h6>
+				<p>Sprite Timeline Animation is an application which displays various animated sprites using timeline animations in JugiMap framework. All animations have been designed in JugiMap Editor.</p>
+				<p>The application source code: <a href="https://github.com/Jugilus/JugiMapFramework/tree/master/examples_c%2B%2B/SpriteTimelineAnimation">github.com/Jugilus/JugiMapFramework/tree/master/examples_c%2B%2B/SpriteTimelineAnimation</a></p>
+				<p>The project files for JugiMap Editor: <a href="SpriteTimelineAnimationEditor.zip">SpriteTimelineAnimationEditor.zip</a></p>
+				<p>A screenshot with the used map in JugiMap Editor: <img src="jugimap_s7_w1300.jpg" /></p>
+				<h3 id="sprite-timeline-animation-in-jugimap">Sprite timeline animation in JugiMap</h3>
+				<p>Timeline animation is a general purpose sprite animation for various game needs. It can be used for simple single sprite animations as well as complex multi sprite animations for cutscenes, ‘bosses’ and intro animations.</p>
+				<p>Main features:</p>
+				<ul>
+				<li>Multi track animation of all sprite properties.</li>
+				<li>Path movement with direction orientation.</li>
+				<li>Multi sprite animations of composed sprites - animate sprites in parent-child structure.</li>
+				<li>Sub-animations - control other animations on timeline track.</li>
+				<li>Runtime inspection of animation state via ‘meta’ track.</li>
+				</ul>
+				<p></br></p>
+				<hr />
+				<p><strong>JugiMap web resources</strong></p>
+				<ul>
+				<li>JugiMap Editor - an application for creating 2d game maps: <a href="http://jugimap.com">http://jugimap.com</a></li>
+				<li>JugiMap Framework - a 2d game development framework for using JugiMap maps in game development engines: <a href="https://github.com/Jugilus/jugimapFramework">https://github.com/Jugilus/jugimapFramework</a></li>
+				</ul>
+				<p>
+				</br>
+				</br>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	
+  
+
+    <script type='text/javascript'>
+	  var statusElement = document.getElementById('status');
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function() {
+            return function(text) {
+                text = Array.prototype.slice.call(arguments).join(' ');
+                console.log(text);
+            };
+        })(),
+        printErr: function(text) {
+            text = Array.prototype.slice.call(arguments).join(' ');
+            console.error(text);
+        },
+        canvas: (function() {
+            var canvas = document.getElementById('canvas');
+            canvas.addEventListener("webglcontextlost", function(e) { alert('FIXME: WebGL context lost, please reload the page'); e.preventDefault(); }, false);
+            return canvas;
+        })(),
+		setStatus: function(szText) {
+            console.log("status: " + szText);
+			
+			// Progress
+			
+			var ProgressElement = document.getElementById( 'Progress' );
+			var aszMatches = szText.match( /([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/ );
+			if( aszMatches )
+			{
+				szText = aszMatches[ 1 ];
+				ProgressElement.value = ( parseInt( aszMatches[ 2 ] ) * 100 );
+				ProgressElement.max = ( parseInt( aszMatches[ 4 ] ) * 100 );
+				ProgressElement.hidden = false;
+			}
+			else
+			{
+				//ProgressElement.value = null;
+				//ProgressElement.max = null;
+				//ProgressElement.hidden = true;
+			}
+			
+			/*
+			// Text
+			var StatusElement = document.getElementById( 'StatusText' );
+			if( szText ){ 
+				StatusElement.innerHTML = szText;
+			}else{
+				StatusElement.hidden = true; 
+			}
+			*/
+			
+			// LoadingScreen
+			var LoadingScreen = document.getElementById( 'LoadingScreen' );
+			if( szText == ""){ 
+				LoadingScreen.hidden = true; 
+				ProgressElement.value = null;
+				ProgressElement.max = null;
+				ProgressElement.hidden = true;
+			}
+			
+        },
+        monitorRunDependencies: function(left) {
+            // no run dependencies to log
+        }
+      };
+      window.onerror = function() {
+        console.log("onerror: " + event);
+      };
+    </script>
+    <script type='text/javascript' src='JugimapSpriteTimelineAnimation.js'></script>
+  </body>
+</html>
